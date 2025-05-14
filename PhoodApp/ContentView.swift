@@ -39,9 +39,13 @@ struct ContentView: View {
                     
                     
                     PromoCarouselView()
-                    
+                                        
                     BestOfferView()
+                    
+                    QuickSelectionButtonView()
+                        .padding()
                 }
+                .padding(.bottom, 0)
             }
             
         }
@@ -51,4 +55,40 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+struct QuickSelectionButtonView: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    
+                } label: {
+                    Text("Reorder")
+                        .fontDesign(.rounded)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                }
+                .padding()
+                .background(.black)
+                .clipShape(.capsule)
+                
+                Button {
+                    
+                } label: {
+                    Text("10 Minutes Delivery")
+                        .fontDesign(.rounded)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.black)
+                }
+                .padding()
+                .background(.white)
+                .clipShape(.buttonBorder)
+                
+                Spacer()
+            }
+        }
+    }
 }

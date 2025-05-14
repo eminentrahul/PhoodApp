@@ -51,6 +51,7 @@ struct BestOfferView: View {
                     }
                 }
             }
+            .frame(height: 100)
             .padding(.horizontal)
         }
         .padding()
