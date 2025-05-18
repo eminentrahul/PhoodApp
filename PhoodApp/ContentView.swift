@@ -58,37 +58,72 @@ struct ContentView: View {
 }
 
 struct QuickSelectionButtonView: View {
+    
+    @State private var isFilled = false
+    @State private var isReorder = true
+    
     var body: some View {
         VStack {
             HStack {
-                Button {
+                Button(action: {
+                    if !isReorder {
+                        isReorder = true
+                    }
                     
-                } label: {
+                    if isFilled {
+                        isFilled = false
+                    }
+                    
+                }) {
                     Text("Reorder")
-                        .fontDesign(.rounded)
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white)
+                        .foregroundColor(isReorder ? .white : .black)
+                        .frame(height: 16)
+                        .frame(width: .infinity)
+                        .padding()
+                        .background(
+                            Capsule()
+                                .fill(isReorder ? Color.black : Color.clear)
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(Color.black, lineWidth: 2)
+                        )
                 }
-                .padding()
-                .background(.black)
-                .clipShape(.capsule)
+                .animation(.easeInOut, value: isReorder)
                 
-                Button {
+                Button(action: {
+                    if !isFilled {
+                        isFilled = true
+                    }
                     
-                } label: {
+                    if isReorder {
+                        isReorder = false
+                    }
+                }) {
                     Text("10 Minutes Delivery")
-                        .fontDesign(.rounded)
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
+                        .foregroundColor(isFilled ? .white : .black)
+                        .frame(height: 16)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            Capsule()
+                                .fill(isFilled ? Color.black : Color.clear)
+                        )
+                        .overlay(
+                            Capsule()
+                                .stroke(.black, lineWidth: 2)
+                        )
                 }
-                .padding()
-                .background(.white)
-                .clipShape(.buttonBorder)
+                .frame(height: 30)
+                .animation(.easeInOut, value: isFilled)
                 
                 Spacer()
             }
+            .padding()
         }
     }
 }
