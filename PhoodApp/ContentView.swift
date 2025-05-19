@@ -84,11 +84,11 @@ struct QuickSelectionButtonView: View {
                         .padding()
                         .background(
                             Capsule()
-                                .fill(isReorder ? Color.black : Color.clear)
+                                .fill(isFilled ? Color.whiteGrayGradient() : Color.blackWhiteGradient())
                         )
                         .overlay(
                             Capsule()
-                                .stroke(Color.black, lineWidth: 2)
+                                .stroke(Color.black.opacity(0.1), lineWidth: 2)
                         )
                 }
                 .animation(.easeInOut, value: isReorder)
@@ -111,7 +111,7 @@ struct QuickSelectionButtonView: View {
                         .padding()
                         .background(
                             Capsule()
-                                .fill(isFilled ? Color.black : Color.clear)
+                                .fill(isFilled ? Color.blackWhiteGradient() : Color.whiteGrayGradient())
                         )
                         .overlay(
                             Capsule()
@@ -125,5 +125,15 @@ struct QuickSelectionButtonView: View {
             }
             .padding()
         }
+    }
+}
+
+extension Color {
+    static func blackWhiteGradient() -> Gradient {
+        return Gradient(colors: [.black.opacity(0.5), .black.opacity(0.6), .black.opacity(0.7), .black.opacity(0.5)])
+    }
+    
+    static func whiteGrayGradient() -> Gradient {
+        return Gradient(colors: [.white, .gray.opacity(0.5)])
     }
 }
